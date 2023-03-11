@@ -1,0 +1,115 @@
+public class Shape{
+   public Shape(){
+                   }
+   private string color;
+   public string getColor(){
+      return this.color;
+      }
+   public void setColor(string c){
+      this.Color=c;
+      }
+   private boolean filled;
+   public void setfilled(boolean filled){
+      this.filled=filled;
+      }
+   public string tostring(){
+      return color + "" + filled;
+      }
+   public shape(string color, boolean filled){
+      this.color=color;
+      this.filled=filled;
+      }
+    }
+public class Circle extends Shape{
+   public Circle(){
+                    }
+   private double radius;
+   public double getRadius(){
+      return this.Radius;
+      }
+   public void setRadius(double radius){
+      this.Radius=radius;
+      }
+   public static Dientich(double r){
+      return r*r*3.14;
+      }
+   public static Chuvi(double r){
+      return 2*r*3.14;
+      }
+   public Circle(double r){
+      this.radius = r;
+      }
+   public string tostring(){
+      return Dientich + "" + Chuvi;
+      }
+   public static void main(string[] args){
+      double r;
+      Scanner scanner = newScanner(system.in);
+      system.out.println("Nhap ban kinh : ");
+      r=scanner.nextDouble;
+      system.out.println("Dien tich la : " + Dientich(r));
+      system.out.println("Chu vi la : " + Chuvi(r));
+      Circle c = newCircle();
+      c.radius;
+      c.color;
+      c.filled;
+      }
+   }
+public class Retangle extends Shape{
+   public Retangle(){
+                      }
+   private double width;
+   private double length;
+   public Retangle(double width, double length){
+      this.width=width;
+      this.length=length;
+      }
+   public double getWidth(){
+      return this.Width;
+      }
+   public void setWidth(double width){
+      this.Width=width;
+      }
+   public double getLength(){
+      return this.Length;
+      }
+   public void setLength(double length){
+      this.Length=length;
+      }
+   double Dientich(){
+      return width*length;
+      }
+   double Chuvi(){
+      return (width + length)*2;
+      }
+   public string tostring(){
+     return Dientich + "" + Chuvi;
+     }
+   class main{
+      public static void main(string[] args){
+         Retangle r = newRetangle();
+         r.color;
+         r.filled;
+         Scanner scanner = newScanner(system.in);
+         System.out.println("Nhap chieu dai :");
+         r.setLength(scanner.nextDouble());
+         System.out.println("Nhap chieu rong;
+         r.setWidth(scanner.nextDouble());
+         System.out.println("Dien tich la : " + r.Dientich());
+         system.out.println("Chu vi la : " + r.Chuvi());
+         }
+   }
+public class Square extends Retangle{
+   public Square(){
+                    }
+   private double side;
+   public Square(double side){
+      this.side=side;
+      }
+   public double getSide(){
+      return this.side;
+      }
+   public void setSide(double side){
+      this.Side=side;
+      }
+   }
