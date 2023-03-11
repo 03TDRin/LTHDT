@@ -1,0 +1,65 @@
+public class Hoaqua{
+  public Hoaqua(){
+                   }
+  void Giaban(){
+                System.out.println("Gia ban");
+                }
+  void Ngaynhap(){
+                System.out.println("Ngay nhap");
+                }
+  private string maHQ;
+  private string tenHQ;
+                    }
+public class QuaCam extends Hoaqua{
+   public QuaCam(){
+                    }
+   void Doanhthu(){
+                System.out.println("Doanh thu");
+                }
+   private int SoLuong;
+    }
+public class CamSanh extends QuaCam{
+   public CamSanh(){
+                    }
+   private string Nguongoc;
+   }
+   public class CamCaoPhong extends QuaCam{
+   public CamCaoPhong(){
+                    }
+   private string Nguongoc;
+   }
+public class QuaTao extends Hoaqua{
+   public QuaTao(){
+                    }
+   void Doanhthu(){
+                   System.out.println("Doanh thu");
+                   }
+   private int SoLuong;
+   }
+ public string tostring(){
+   return QuaCam + "" + QuaTao;
+class main{
+   QuaTao tao = newQuaTao();
+   tao.Giaban();
+   tao.Ngaynhap();
+   tao.Doanhthu();
+   tao.maHQ;
+   tao.tenHQ;
+   tao.SoLuong;
+   CamSanh s = newCamSanh();
+   s.Giaban();
+   s.Ngaynhap();
+   s.Doanhthu();
+   s.maHQ;
+   s.tenHQ;
+   s.SoLuong;
+   s.Nguongoc;
+   CamCaoPhong cp = newCamCaoPhong();
+   cp.Giaban();
+   cp.Ngaynhap();
+   cp.Doanhthu();
+   cp.maHQ;
+   cp.tenHQ;
+   cp.SoLuong;
+   cp.Nguongoc;
+   }
