@@ -1,0 +1,73 @@
+public class App {
+    public static void main(String[] args) throws Exception {
+        NhanVien nhanvien = new NhanVien("Cao Duc Minh");
+        NhanVienFullTime nvft = new NhanVienFullTime("Nguyen Van A", 1, 2);
+        nvft.xuatThongTin();
+        nhanvien = new NhanVienPartTime("Tran Thi B", 50);
+        nhanvien = new NhanVienFullTime("Son Tung", 3, 4);
+        nhanvien.xuatThongTin();
+    }
+}
+public class NhanVien {
+    private String ten;
+    private long luong;
+
+    public NhanVien() {
+
+    }
+
+    public NhanVien(String ten) {
+        this.ten = ten;
+    }
+
+    public String loaiNhanVien() {
+        return "Nhan Vien";
+    }
+
+    public void tinhLuong() {
+
+    }
+
+    public void xuatThongTin() {
+        System.out.println("ten: " + ten + ", luong: " + luong);
+    }
+}
+public class NhanVienFullTime extends NhanVien {
+    private int loaiChucVu;
+    private int ngayLamThem;
+
+    public NhanVienFullTime(String ten, int loaiChucVu, int ngayLamThem) {
+        super(ten);
+        this.loaiChucVu = loaiChucVu;
+        this.ngayLamThem = ngayLamThem;
+    }
+
+    @Override
+    public String loaiNhanVien() {
+        return "nhan vien full time";
+    }
+
+    @Override
+    public void tinhLuong() {
+
+    }
+
+}
+public class NhanVienPartTime extends NhanVien {
+    private int gioLamViec;
+
+    public NhanVienPartTime(String ten, int gioLamViec) {
+        super(ten);
+        this.gioLamViec = gioLamViec;
+    }
+
+    @Override
+    public String loaiNhanVien() {
+        return "nhan vien part time";
+    }
+
+    @Override
+    public void tinhLuong() {
+
+    }
+}
