@@ -1,0 +1,100 @@
+public class ChuyenXe{ 
+  private int MaSo;
+  private String HotenTaixe;
+  private String SoXe;
+    private String Doanhthu;
+  private void Doanhthu(){
+      System.out.println("Doanh thu cua chuyen xe");
+  }
+  public void getDoanhthu(){
+      this.Doanhthu();
+  }
+  public void setDoanhthu(String doanhthu){
+      this.Doanhthu = doanhthu;
+  }
+}
+public class CXNoiT extends ChuyenXe{
+    private int SoTuyen;
+    private date Ngaydi;
+    private String soKm;
+    
+    public CXNoiT(){
+    }
+    @Override 
+    public void Doanhthu(){
+        System.out.println("Doanh thu cua chuyen xe noi thanh");
+    }
+    public int getSoTuyen(){
+        return this.SoTuyen;
+    }
+    public void setSoTuyen(int SoTuyen){
+        this.SoTuyen = SoTuyen;
+    }
+
+    private static class string {
+
+        public string() {
+        }
+    }
+
+    private static class date {
+
+        public date() {
+        }
+    }
+}
+public class CXNgoaiT extends ChuyenXe{
+    private int SoTuyen;
+    private date Ngaydi;
+    private String soKm;
+
+    /**
+     *
+     */
+    public CXNgoaiT(){
+        
+    }
+    @override
+    public void Doanhthu(){
+        System.out.println("Doanh thu cua chuyen xe ngoai thanh");
+    }
+    public int getSoTuyen(){
+        return this.SoTuyen;
+    }
+    public void setSoTuyen(int SoTuyen){
+        this.SoTuyen = SoTuyen;
+    }
+    private static class date {
+
+        public date() {
+        }
+    }
+}
+public class Main {
+    public static void main(String[args]){
+        ArrayList<CXNoiT> arrCXNoiT = new ArrayList<>();
+        ArrayList<CXNgoaiT> arrCXNgoaiT = new ArrayList<>();
+    }
+
+    private static class ArrayList<T> {
+
+        public ArrayList() {
+        }
+    }
+
+    private static class Scanner {
+
+        public Scanner() {
+        }
+
+        private int nextInt() {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+    }
+
+    private static class scanner extends Scanner {
+
+        public scanner(InputStream in) {
+        }
+    }
+}
