@@ -1,0 +1,78 @@
+public interface Moveable {
+    void moveUp();
+    void moveDown();
+    void moveLeft();
+    void moveRight();
+    
+}
+public class MoveableCircle implements Moveable{
+    int radius;
+    
+    @Override
+    public void moveUp() {
+    }
+
+    @Override
+    public void moveDown() {
+    }
+
+    @Override
+    public void moveLeft() {
+    }
+
+    @Override
+    public void moveRight() {
+    }
+
+    @Override
+    public String toString() {
+        return null;
+    }
+    
+}
+public class MoveablePoint implements Moveable {
+    int x;
+    int y;
+    int xSpeed;
+    int ySpeed;
+
+    public MoveablePoint(int x, int y, int xSpeed, int ySpeed) {
+        this.x = x;
+        this.y = y;
+        this.xSpeed = xSpeed;
+        this.ySpeed = ySpeed;
+    }
+
+    public String toString() {
+        return "MoveablePoint{" + "x=" + x + ", y=" + y + ", xSpeed=" + xSpeed + ", ySpeed=" + ySpeed + '}';
+    }
+
+    @Override
+    public void moveUp() {
+    }
+
+    @Override
+    public void moveDown() {
+    }
+
+    @Override
+    public void moveLeft() {
+    }
+
+    @Override
+    public void moveRight() {
+    }
+    
+}
+main{
+public static void main(String[] args) {
+        // TODO code application logic here
+        MoveableCircle mv = new MoveableCircle();
+        mv.moveDown();
+        mv.moveLeft();
+        mv.moveRight();
+        mv.moveUp();
+        
+    }
+   } 
+}
