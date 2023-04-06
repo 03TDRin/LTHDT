@@ -1,0 +1,63 @@
+class Hangsanxuat {
+ public final string tenHangsanxuat;
+ public final string tenQuocgia;
+ public Hangsanxuat( tring a, string b){
+  tenHangsanxuat = a, tenQuocgia = b;
+  }
+  public Hangsanxuat() {
+   this("...","...");
+   }
+ }
+ interface Phuongtiendichuyen {
+  string laytenHangsanxuat();
+  void batDau();
+  void tangToc();
+  void dungLai();
+  abstract double layVantoc(){
+   System.out.println("Phuong tien di chuyen");
+   }
+  }
+ class MayBay implements Phuongtiendichuyen {
+  string loainhienlieu;
+  void catcanh();
+  void haCanh();
+  @Override
+  abstract double layVantoc(){
+   System.out.println("Van toc may bay");
+   }
+  }
+ class XeOto implements Phuongtiendichuyen {
+  string loainhienlieu;
+  @Override
+  abstract double layVantoc(){
+   System.out.println("Van toc oto");
+   }
+ }
+ class XeDap implements Phuongtiendichuyen {
+  @Override
+  abstract double layVantoc(){
+   System.out.println("Van toc xe dap");
+   }
+ }
+ class main{
+  public static void main(String[] args){
+   Phuongtiendichuyen p = newPhuongtiendichuyen();
+    p.loaiphuongtien;
+    p.hangsanxuat;
+    p.batDau();
+    p.tangToc();
+    p.dungLai();
+    p.layVantoc();
+   
+   MayBay m = newMayBay();
+    m.loainhienlieu;
+    m.catcanh();
+    m.haCanh();
+    m.layVantoc();
+   XeOto o = newXeOto();
+    o.loainhienlieu;
+    o.layvantoc();
+   XeDap d = newXeDap();
+    d.layVantoc();
+   }
+ }
