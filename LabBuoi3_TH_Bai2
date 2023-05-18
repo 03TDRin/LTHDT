@@ -1,0 +1,350 @@
+package th3_lab_bai2;
+
+/**
+ *
+ * @author HP
+ */
+public abstract class HangHoa {
+    private String maHang;
+    private String tenHang;
+    private int soLuongTon;
+    double donGia;
+
+    public HangHoa(String maHang, String tenHang, int soLuongTon, double donGia) {
+        this.maHang = maHang;
+        this.tenHang = tenHang;
+        this.soLuongTon = soLuongTon;
+        this.donGia = donGia;
+    }
+
+    public String getMaHang() {
+        return maHang;
+    }
+
+    public void setMaHang(String maHang) {
+        this.maHang = maHang;
+    }
+
+    public String getTenHang() {
+        return tenHang;
+    }
+
+    public void setTenHang(String tenHang) {
+        this.tenHang = tenHang;
+    }
+
+    public int getSoLuongTon() {
+        return soLuongTon;
+    }
+
+    public void setSoLuongTon(int soLuongTon) {
+        this.soLuongTon = soLuongTon;
+    }
+
+    public double getDonGia() {
+        return donGia;
+    }
+
+    public void setDonGia(double donGia) {
+        this.donGia = donGia;
+    }
+
+    public abstract double tinhVAT();
+
+    public abstract String danhGia();
+
+    public abstract void inThongTin();
+    
+}
+abstract class HangThucPham extends HangHoa {
+    private String ngaySanXuat;
+    private String ngayHetHan;
+    private String nhaCungCap;
+
+    public HangThucPham(String ngaySanXuat, String ngayHetHan, int soLuongTon, double donGia, String nhaCungCap, String maHang, String tenHang) {
+        super(maHang, tenHang, soLuongTon, donGia);
+        this.ngaySanXuat = ngaySanXuat;
+        this.ngayHetHan = ngayHetHan;
+        this.nhaCungCap = nhaCungCap;
+    }
+
+    public String getNgaySanXuat() {
+        return ngaySanXuat;
+    }
+
+    public void setNgaySanXuat(String ngaySanXuat) {
+        this.ngaySanXuat = ngaySanXuat;
+    }
+
+    public String getNgayHetHan() {
+        return ngayHetHan;
+    }
+
+    public void setNgayHetHan(String ngayHetHan) {
+        this.ngayHetHan = ngayHetHan;
+    }
+
+    public String getNhaCungCap() {
+        return nhaCungCap;
+    }
+
+    public void setNhaCungCap(String nhaCungCap) {
+        this.nhaCungCap = nhaCungCap;
+    }
+
+    @Override
+    public double tinhVAT(){
+        return getDonGia() * 0.05;
+    };
+
+    @Override
+    public String danhGia(){
+        if (getSoLuongTon() > 0 && getNgayHetHan().equals(getNgaySanXuat())) {
+            return "Bản khó";
+        } else {
+            return "Không đánh giá";
+        }
+    };
+
+    @Override
+    public void inThongTin(){
+        System.out.println("Mã hàng: " + getMaHang());
+        System.out.println("Tên hàng: " + getTenHang());
+        System.out.println("Số lượng tồn: " + getSoLuongTon());
+        System.out.println("Đơn giá: " + getDonGia());
+        System.out.println("Ngày sản xuất: " + getNgaySanXuat());
+        System.out.println("Ngày hết hạn: " + getNgayHetHan());
+        System.out.println("Nhà cung cấp: " + getNhaCungCap());
+        System.out.println("VAT: " + tinhVAT());
+        System.out.println("Đánh giá: " + danhGia());
+        System.out.println("-----------------------------");
+    };
+}
+class HangDienMay extends HangHoa {
+   private int thoiGianBaoHanh;
+   private double congSuat;
+
+    public HangDienMay(String maHang, String tenHang, int thoiGianBaoHanh, int soLuongTon, int par2, int donGia) {
+        super(maHang, tenHang, soLuongTon, donGia);
+        this.thoiGianBaoHanh = thoiGianBaoHanh;
+        this.congSuat = congSuat;
+    }
+
+    public int getThoiGianBaoHanh() {
+        return thoiGianBaoHanh;
+    }
+
+    public void setThoiGianBaoHanh(int thoiGianBaoHanh) {
+        this.thoiGianBaoHanh = thoiGianBaoHanh;
+    }
+
+    public double getCongSuat() {
+        return congSuat;
+    }
+
+    public void setCongSuat(double congSuat) {
+        this.congSuat = congSuat;
+    }
+   
+    @Override
+public double tinhVAT() {
+    return getDonGia() * 0.1;
+}
+
+@Override
+public String danhGia() {
+    // Logic đánh giá mức độ bản buôn của hàng điện máy
+    if (getSoLuongTon() < 3) {
+        return "Bản được";
+    } else {
+        return "Không đánh giá";
+    }
+}
+
+@Override
+public void inThongTin() {
+    System.out.println("Mã hàng: " + getMaHang());
+    System.out.println("Tên hàng: " + getTenHang());
+    System.out.println("Số lượng tồn: " + getSoLuongTon());
+    System.out.println("Đơn giá: " + getDonGia());
+    System.out.println("Thời gian bảo hành: " + getThoiGianBaoHanh());
+    System.out.println("Công suất: " + getCongSuat());
+    System.out.println("VAT: " + tinhVAT());
+    System.out.println("Đánh giá: " + danhGia());
+    System.out.println("-----------------------------");
+  }
+   
+}
+abstract class HangSanhSu extends HangHoa {
+  private String nhaSanXuat;
+  private String ngayNhapKho;
+
+    public HangSanhSu(String nhaSanXuat, String ngayNhapKho, int soLuongTon, int par1, String maHang, String tenHang) {
+        super(maHang, tenHang, soLuongTon);
+        this.nhaSanXuat = nhaSanXuat;
+        this.ngayNhapKho = ngayNhapKho;
+    }
+
+    
+
+    public String getNhaSanXuat() {
+        return nhaSanXuat;
+    }
+
+    public void setNhaSanXuat(String nhaSanXuat) {
+        this.nhaSanXuat = nhaSanXuat;
+    }
+
+    public String getNgayNhapKho() {
+        return ngayNhapKho;
+    }
+
+    public void setNgayNhapKho(String ngayNhapKho) {
+        this.ngayNhapKho = ngayNhapKho;
+    }
+
+  @Override
+public double tinhVAT() {
+    return getDonGia() * 0.1;
+}
+
+@Override
+public String danhGia() {
+    // Logic đánh giá mức độ bản buôn của hàng sành sứ
+    if (getSoLuongTon() > 50 && getNgayNhapKho().length() >= 10) {
+        return "Bản chậm";
+    } else {
+        return "Không đánh giá";
+    }
+}
+
+}
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author HP
+ */
+public class QuanLyHangHoa {
+    private List<HangHoa> danhSachHangHoa;
+
+    public QuanLyHangHoa() {
+    danhSachHangHoa = new ArrayList<>();
+}
+
+public void themHangHoa(HangHoa hangHoa) {
+    danhSachHangHoa.add(hangHoa);
+}
+
+public void inDanhSachHangHoa() {
+    for (HangHoa hangHoa : danhSachHangHoa) {
+        hangHoa.inThongTin();
+    }
+}
+public static void main(String[] args) {
+    QuanLyHangHoa quanLyHangHoa = new QuanLyHangHoa();
+
+    HangThucPham thucPham1 = new HangThucPham("TP001", "Bánh mỳ", 10, 5000, "2023-05-18", "2023-05-25", "Công ty A") {};
+    HangThucPham thucPham2 = new HangThucPham("TP002", "Nước ngọt", 5, 10000, "2023-05-15", "2023-06-30", "Công ty B") {};
+    HangDienMay dienMay1 = new HangDienMay("DM001", "Tivi", 2, 5000000, 12, 200);
+    HangDienMay dienMay2 = new HangDienMay("DM002", "Tủ lạnh", 1, 8000000, 24, 300);
+    HangSanhSu sanhSu1 = new HangSanhSu("SS001", "Bát sứ", 100, 100000, "Công ty C", "2023-05-01") {
+        @Override
+        public void inThongTin() {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+    };
+    HangSanhSu sanhSu2 = new HangSanhSu("SS002", "Ly sứ", 200, 50000, "Công ty D", "2023-05-10") {
+        @Override
+        public void inThongTin() {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+    };
+
+    quanLyHangHoa.themHangHoa(thucPham1);
+    quanLyHangHoa.themHangHoa(thucPham2);
+    quanLyHangHoa.themHangHoa(dienMay1);
+    quanLyHangHoa.themHangHoa(dienMay2);
+    quanLyHangHoa.themHangHoa(sanhSu1);
+    quanLyHangHoa.themHangHoa(sanhSu2);
+    
+    quanLyHangHoa.inDanhSachHangHoa();
+}
+}
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        QuanLyHangHoa quanLyHangHoa = new QuanLyHangHoa();
+        Scanner scanner = new Scanner(System.in);
+
+        int luaChon;
+        do {
+            System.out.println("----- MENU -----");
+            System.out.println("1. Thêm hàng hóa");
+            System.out.println("2. In toàn bộ danh sách hàng hóa");
+            System.out.println("3. Đánh giá mức độ bản buôn");
+            System.out.println("4. Thoát");
+            System.out.print("Nhập lựa chọn của bạn: ");
+            luaChon = scanner.nextInt();
+
+            switch (luaChon) {
+                case 1:
+                    themHangHoa(quanLyHangHoa, scanner);
+                    break;
+                case 2:
+                    inToanBoDanhSachHangHoa(quanLyHangHoa);
+                    break;
+                case 3:
+                    danhGiaMucDoBanBuon(quanLyHangHoa);
+                    break;
+                case 4:
+                    System.out.println("Đã thoát chương trình.");
+                    break;
+                default:
+                    System.out.println("Lựa chọn không hợp lệ. Vui lòng thử lại.");
+            }
+        } while (luaChon != 4);
+    }
+
+    public static void themHangHoa(QuanLyHangHoa quanLyHangHoa, Scanner scanner) {
+        System.out.println("----- THÊM HÀNG HÓA -----");
+        System.out.print("Nhập mã hàng: ");
+        String maHang = scanner.next();
+        System.out.print("Nhập tên hàng: ");
+        String tenHang = scanner.next();
+        System.out.print("Nhập số lượng tồn: ");
+        int soLuongTon = scanner.nextInt();
+        System.out.print("Nhập đơn giá: ");
+        double donGia = scanner.nextDouble();
+
+        if(){
+            System.out.print("Nhập ngày sản xuất: ");
+            String ngaySanXuat = scanner.next();
+            System.out.print("Nhập ngày hết hạn: ");
+            String ngayHetHan = scanner.next();
+            System.out.print("Nhập nhà cung cấp: ");
+            String nhaCungCap = scanner.next();
+
+            HangThucPham hangThucPham = new HangThucPham(maHang, tenHang, soLuongTon, donGia, ngaySanXuat, ngayHetHan, nhaCungCap) {};
+            quanLyHangHoa.themHangHoa(hangThucPham);
+        }
+   
+         else{
+            System.out.print("Nhập thời gian bảo hành: ");
+            int thoiGianBaoHanh = scanner.nextInt();
+            System.out.print("Nhập công suất: ");
+            double congSuat = scanner.nextDouble();
+            
+        }
+    }
+
+    private static void inToanBoDanhSachHangHoa(QuanLyHangHoa quanLyHangHoa) {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
+
+    private static void danhGiaMucDoBanBuon(QuanLyHangHoa quanLyHangHoa) {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
+}
