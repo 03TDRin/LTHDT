@@ -1,0 +1,217 @@
+import java.util.Date;
+
+/**
+ *
+ * @author HP
+ */
+abstract class GiaoDichNhaDat {
+    protected String maGiaoDich;
+    protected Date ngayGiaoDich;
+    protected double donGia;
+    protected double dienTich;
+
+    public GiaoDichNhaDat(String maGiaoDich, Date ngayGiaoDich, double donGia, double dienTich) {
+        this.maGiaoDich = maGiaoDich;
+        this.ngayGiaoDich = ngayGiaoDich;
+        this.donGia = donGia;
+        this.dienTich = dienTich;
+    }
+    
+    public abstract double tinhTongGia();
+
+    public String getMaGiaoDich() {
+        return maGiaoDich;
+    }
+
+    public Date getNgayGiaoDich() {
+        return ngayGiaoDich;
+    }
+
+    public double getDonGia() {
+        return donGia;
+    }
+
+    public double getDienTich() {
+        return dienTich;
+    }
+    
+}
+import java.util.Date;
+
+/**
+ *
+ * @author HP
+ */
+public abstract class GiaoDichNha extends GiaoDichNhaDat {
+    private String loaiNha;
+    private String diaChi;
+    
+    public GiaoDichNha(String maGiaoDich, Date ngayGiaoDich, double donGia, double dienTich, String loaiNha1, String diaChi1) {
+        super(maGiaoDich, ngayGiaoDich, donGia, dienTich);
+        this.loaiNha = loaiNha;
+        this.diaChi = diaChi;
+    }
+
+    public String getLoaiNha() {
+        return loaiNha;
+    }
+
+    public String getDiaChi() {
+        return diaChi;
+    }
+    
+    /**
+     *
+     * @return
+     */
+    @Override
+    public double tinhTongGia(){
+        if(loaiNha.equals("cao cap")){
+            return dienTich*donGia;
+        }else{
+               return dienTich*donGia*0.9; 
+                }
+    }
+    
+}
+import java.util.Date;
+
+/**
+ *
+ * @author HP
+ */
+public abstract class GiaoDichDat extends GiaoDichNhaDat {
+    private char loaiDat;
+    
+    public GiaoDichDat(String maGiaoDich, Date ngayGiaoDich, double donGia, double dienTich, char loaiDat1) {
+        super(maGiaoDich, ngayGiaoDich, donGia, dienTich);
+        this.loaiDat = loaiDat;
+    }
+
+    /**
+     *
+     * @return
+     */
+    @Override
+    public double tinhTongGia(){
+        if(loaiDat == 'A'){
+            return dienTich*donGia;
+        }else{
+            return dienTich*donGia*1.5;
+        }
+    }
+    public char getLoaiDat(){
+        return loaiDat;
+    }
+}
+public class ThoiGianGiaoDich {
+    private final int ngay;
+    private final int thang;
+    private final int nam;
+
+    public ThoiGianGiaoDich(int ngay, int thang, int nam) {
+        this.ngay = ngay;
+        this.thang = thang;
+        this.nam = nam;
+    }
+
+    public int getNgay() {
+        return ngay;
+    }
+
+    public int getThang() {
+        return thang;
+    }
+
+    public int getNam() {
+        return nam;
+    }
+    
+}
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Scanner;
+
+/**
+ *
+ * @author HP
+ */
+public class Main {
+    public static void main(String[]args){
+        List<GiaoDichNhaDat> giaodich = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("So luong giao dich : ");
+        int numGiaoDichNhaDat = scanner.nextInt();
+        Iterable<GiaoDichNhaDat> giaodichnhadatList = null;
+        
+        for(int i=0; i < numGiaoDichNhaDat; i++){
+            System.out.println("Giao dich"+(i+1));
+            System.out.print("Loai giao dich (1-dat, 2-nha): ");
+            int loaiGiaoDich = scanner.nextInt();
+            
+            System.out.println("Ma giao dich : ");
+            String maGiaoDich = scanner.next();
+            
+            System.out.print("Thoi gian giao dich : ");
+            int ngay = scanner.nextInt();
+            int thang = scanner.nextInt();
+            int nam = scanner.nextInt();
+            
+            Date ngayGiaoDich = new Date(ngay, thang, nam);
+            
+            System.out.print("Don gia: ");
+            double donGia = scanner.nextDouble();
+            
+            System.out.print("Dien tich : ");
+            double dienTich = scanner.nextDouble();
+            
+            if(loaiGiaoDich == 1){
+                System.out.print("Loai dat (A, B, C): ");
+                char loaiDat = scanner.next().charAt(0);
+                GiaoDichDat giaoDichDat = new GiaoDichDat(maGiaoDich, ngayGiaoDich,donGia, dienTich,loaiDat) {};
+                giaodichnhadatList.add(GiaoDichDat);
+            }else if(loaiGiaoDich == 2){
+                System.out.print("Loai nha(cao cap, thuong): ");
+                String loaiNha = scanner.next();
+                System.out.print("Dia chi : ");
+                String diaChi = scanner.next();
+                GiaoDichNha giaoDichNha = new GiaoDichNha(maGiaoDich, ngayGiaoDich, donGia, dienTich, loaiNha, diaChi) {};
+                giaodichnhadat.List.add(GiaoDichNha);
+            }
+        }
+        int giaoDichDatCount = 0;
+        int giaoDichNhaCount = 0;
+        for(GiaoDichNhaDat giaodichnhadat : giaodichnhadatList){
+            if(giaodichnhadat instanceof GiaoDichDat){
+                giaoDichDatCount++;
+            }else if(giaodichnhadat instanceof GiaoDichNha){
+                giaoDichNhaCount++;
+            }
+        }
+        double tongGiaGiaoDichDat = 0;
+        int TongSoLuong = 0;
+         for(GiaoDichNhaDat giaodichnhadat : giaodichnhadatList){
+            if(giaodichnhadat instanceof GiaoDichDat){
+                tongGiaGiaoDichDat += giaodichnhadat.tinhTongGia();
+                TongSoLuong++;
+            }
+    }
+         double giaGiaoDichDatTB = tongGiaGiaoDichDat / TongSoLuong;
+         
+         System.out.println("Cac giao dich cua thang 9 nam 2023:");
+         for(GiaoDichNhaDat giaodichnhadat : giaodichnhadatList){
+             Date ngay = giaodichnhadat.getNgayGiaoDich();
+             if(ngay.getMonth()==9 && ngay.getYear()==2023){
+                 System.out.println("Ma giao dich : "+giaodichnhadat.getMaGiaoDich());
+                 System.out.println("Ngay giao dich : "+ngay.getDay()+"/"+ngay.getMonth()+"/"+ngay.getYear());
+                 System.out.println("Don gia : "+giaodichnhadat.getDonGia());
+                 System.out.println("Dien tich : "+giaodichnhadat.getDienTich());
+                 System.out.println("Thanh tien : "+giaodichnhadat.tinhTongGia());
+             }
+         }
+         System.out.println("Tong so luong giao dich dat : "+giaoDichDatCount);
+         System.out.println("Trung binh gia giao dich dat : "+TongSoLuong);
+    }
+}
