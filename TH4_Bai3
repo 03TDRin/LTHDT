@@ -1,0 +1,143 @@
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author HP
+ */
+public class DiemHocVien {
+    private String hoTen;
+    private int namSinh;
+    private List<Integer> diemMonHoc;
+
+    public DiemHocVien(String hoTen, int namSinh, List<Integer> diemMonHoc) {
+        this.hoTen = hoTen;
+        this.namSinh = namSinh;
+        this.diemMonHoc = diemMonHoc;
+    }
+
+    public String getHoTen() {
+        return hoTen;
+    }
+
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
+    }
+
+    public int getNamSinh() {
+        return namSinh;
+    }
+
+    public void setNamSinh(int namSinh) {
+        this.namSinh = namSinh;
+    }
+
+    public List<Integer> getDiemMonHoc() {
+        return diemMonHoc;
+    }
+
+    public void setDiemMonHoc(List<Integer> diemMonHoc) {
+        this.diemMonHoc = diemMonHoc;
+    }
+    
+    public boolean coLamLuanVan(){
+        double diemTrungBinh = tinhDiemTrungBinh();
+        return(diemTrungBinh > 7.0) && !coMonDuoi5();
+    }
+    
+    public boolean coThiTotNghiep(){
+        double diemTrungBinh = tinhDiemTrungBinh();
+        return(diemTrungBinh <= 7.0) && !coMonDuoi5();
+    }
+    
+    public boolean coThiLai(){
+        return coMonDuoi5();
+    }
+    
+    public List<String> getMonThiLai(){
+        List<String> monThiLai = new ArrayList<>();
+        for(int i = 0; i < diemMonHoc.size(); i++){
+            if(diemMonHoc.get(i)<5){
+                monThiLai.add(getTenMonHoc(i));
+            }
+        }
+        return monThiLai;
+    }
+    
+    private boolean coMonDuoi5(){
+        for(int diem : diemMonHoc){
+            if(diem<5){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private double tinhDiemTrungBinh(){
+        int sum = 0;
+        for(int diem : diemMonHoc){
+            sum += diem;
+        }
+        return(double)sum/diemMonHoc.size();
+    }
+    
+    private String getTenMonHoc(int index){
+        switch (index){
+            case 0:
+                return "MonHoc1";
+            case 1:
+                return "MonHoc2";
+            case 2:
+                return "MonHoc3";
+            case 3:
+                return "MonHoc4";
+            case 4:
+                return "MonHoc5";
+            default:
+                return "";
+        }
+    }
+}
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author HP
+ */
+public class Main {
+    public static void main(String[]args){
+        List<DiemHocVien> hocVienList = new ArrayList<>();
+        hocVienList.add(new DiemHocVien("Hoc Vien 1",2003,List.of(8,9,10,7,6)));
+        hocVienList.add(new DiemHocVien("Hoc Vien 2",2003,List.of(6,7,10,7,6)));
+        hocVienList.add(new DiemHocVien("Hoc Vien 3",2003,List.of(5,6,7,8,9)));
+        hocVienList.add(new DiemHocVien("Hoc Vien 4",2003,List.of(9,8,7,6,5)));
+        hocVienList.add(new DiemHocVien("Hoc Vien 5",2003,List.of(8,9,10,9,10)));
+        
+        int countLuanVan = 0;
+        for(DiemHocVien hocVien : hocVienList){
+            if(hocVien.coLamLuanVan()){
+                countLuanVan++;
+            }
+        }
+        
+        int countThiTotNghiep = 0;
+        for(DiemHocVien hocVien : hocVienList){
+            if(hocVien.coThiTotNghiep()){
+                countThiTotNghiep++;
+            }
+        }
+        System.out.println("So nguoi trong lop co thi tot nghiep: "+countThiTotNghiep);
+        
+        int countThiLai = 0;
+        List<String> monThiLaiList = new ArrayList<>();
+        for(DiemHocVien hocVien : hocVienList){
+            if(hocVien.coThiLai()){
+                countThiLai++;
+                monThiLaiList.addAll(hocVien.getMonThiLai());
+            }
+        }
+        System.out.println("So nguoi trong lop phai thi lai : "+countThiLai);
+        System.out.println("Cac mon thi lai : "+monThiLaiList);
+    }
+}
